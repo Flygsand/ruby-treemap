@@ -1,0 +1,6 @@
+= RubyTreemap - TODO
+
+* Lots of testing. Need to create solid unit tests.
+* HTML output seems to be a few pixels off when drawing treemap squares.
+* Better image output support. Need to add the ability to draw labels.
+* Add option to pad squares in treemap.

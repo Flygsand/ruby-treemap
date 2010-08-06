@@ -1,0 +1,18 @@
+===============================================================================
+RubyTreemap - ChangeLog
+===============================================================================
+
+2008-11-23
+	* Applied patch from Peter Krantz
+		- Enables svg output with centered labels
+
+2007-08-14
+	* Applied patch from Adrian Schoenig 
+		- added an object attribute to the Treemap::Node class in order to
+		  provide easy access to the object, which is represented by the node
+		- made the font size of every box dependant on its size for
+		  html output
+
+2006-07-16
+	* First release 0.0.1
+	* Created RubyForge project

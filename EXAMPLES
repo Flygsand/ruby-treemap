@@ -1,0 +1,48 @@
+= RubyTreemap Examples
+
+To create a treemap you first need to build up a tree structure using the
+Treemap::Node class. This is a generic tree node class and represents the data
+to be treemap'ed. A Node in the treemap has a size and a color. The size can be
+any value and is specific to your data set. So for example, in a treemap of the
+stock market, a given node's size could be equal to it's total shares sold for
+the day. For all non-leaf nodes the size value must be equal to the sum of the
+sizes of it's children. If the size is nil it will be calculated by recursively
+summing the size of the child nodes. The color for a node can be either a value
+usually a percentage (a rate of change) or a hex string color (##FFCCFF). If the
+color is a value then a hex color string will be generated for you using the
+GradientColor class. A quick example:
+
+     root = Treemap::Node.new
+     root.new_child(:size => 6)
+     root.new_child(:size => 6)
+     root.new_child(:size => 4)
+     root.new_child(:size => 3)
+     root.new_child(:size => 2)
+     root.new_child(:size => 2)
+     root.new_child(:size => 1)
+
+You can also build a tree from an XML file:
+
+    file = File.new("data.xml")
+    root = Treemap::tree_from_xml(file)
+
+Once you built up your root node now all you have to do is output it. For
+example (html output):
+
+    output = Treemap::HtmlOutput.new do |o|
+        o.width = 800
+        o.height = 600
+        o.center_labels_at_depth = 1
+    end
+
+    puts output.to_html(root)
+
+(or image output):
+
+    output = Treemap::ImageOutput.new do |o|
+        o.width = 800
+        o.height = 600
+    end
+
+    output.to_png(root)
+

@@ -1,0 +1,48 @@
+= RubyTreemap
+
+RubyTreemap is a library for generating treemaps in ruby. RubyTreemap provides
+an interface for creating treemaps and rendering them in multiple formats.
+Treemaps are an effective tool for visualizing data sets and are commonly used
+to display hierarchical data. Treemaps were first designed by Ben Shneiderman
+at the University of Maryland. For more information and the history of
+treemaps see: http://www.cs.umd.edu/hcil/treemap-history/index.shtml
+
+RubyTreemap is still in the early stages of development but a few of the
+features that are implemented include:
+
+* Slice and Dice layout
+* Squarified layout
+* HTML output
+* SVG output
+* PNG output (RMagick required)
+
+== Dependencies
+
+* RMagick (http://rmagick.rubyforge.org/) - For image output only
+
+== Examples
+
+See EXAMPLES[link://files/EXAMPLES.html]
+
+== Authors
+
+Andrew Bruno <aeb@qnot.org>
+
+== Copyright
+
+Copyright (c) 2006 by Andrew Bruno <aeb@qnot.org>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
