@@ -25,7 +25,7 @@ require File.dirname(__FILE__) + '/treemap/svg_output'
 # require File.dirname(__FILE__) + '/treemap/image_output'
 
 module Treemap
-    VERSION = "0.0.3"
+    VERSION = "0.0.3.1"
 
     def Treemap::dump_tree(node)
         puts "#{node.label}: #{node.bounds.to_s}"

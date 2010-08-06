@@ -15,7 +15,7 @@ require File.dirname(__FILE__) + "/output_base"
 require File.dirname(__FILE__) + "/slice_layout"
 
 class Treemap::HtmlOutput < Treemap::OutputBase
-    attr_accessor(:full_html, :base_font_size, :center_labels_at_depth, :center_labels_at_z, :stylesheets, :javascripts)
+    attr_accessor(:full_html, :base_font_size, :center_labels_at_depth, :center_labels_at_z, :stylesheets, :javascripts, :metadata)
 
     def initialize
         super
@@ -150,7 +150,7 @@ CSS
         if(!@center_labels_at_depth.nil? and @center_labels_at_depth == node.depth)
             html += "border: 1px solid black;"
         end
-        html += "\" class=\"node\""
+        html += "\" class=\"#{metadata(node)}node\""
         html += ">"
 
         html += draw_node_body(node)
@@ -162,5 +162,16 @@ CSS
         end
 
         html += "</div>"
+    end
+
+    private
+    def metadata(node)
+      if node.object && @metadata
+        metadata = @metadata.map { |c| "'#{c}': '#{node.object.send(c).to_s}'" } || []
+
+        return "" if metadata.empty?
+
+        return "{#{metadata.join(',')}} "
+      end
     end
 end
