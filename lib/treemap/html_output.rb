@@ -111,13 +111,7 @@ CSS
             label += "overflow: hidden; position: absolute;"
             label += "margin-top: " + (node.bounds.height/2 - node.font_size(@base_font_size)/2).to_s + "px;"
 
-            left_margin = 0
-            if(label_size < node.bounds.width)
-                left_margin = (node.bounds.width - label_size) / 2
-            end
-            label += "margin-left: " + left_margin.to_s + "px;"
-            #label += "left: #{node.bounds.x1}px; top: #{node.bounds.y1}px;"
-            label += "left: 0px; top: 0px;"
+            label += "left: 0px; top: 0px; width: 100%; height: 100%; line-height: 100%; text-align: center;"
             label += "z-index: #{@center_labels_at_z};"
             label += "font-size:#{node.font_size(@base_font_size)}px;"
             label += "\""
@@ -141,6 +135,8 @@ CSS
     def draw_node(node)
         return "" if node.bounds.nil?
 
+        root_class = node.depth == 0 ? " treemap-root" : ""
+      
         html = "<div id=\"node-#{node.id}\"" 
         html += " style=\""
         html += "overflow: hidden; position: absolute; display: inline;"
@@ -150,7 +146,7 @@ CSS
         if(!@center_labels_at_depth.nil? and @center_labels_at_depth == node.depth)
             html += "border: 1px solid black;"
         end
-        html += "\" class=\"#{metadata(node)}node\""
+        html += "\" class=\"#{metadata(node)}node#{root_class}\""
         html += ">"
 
         html += draw_node_body(node)
