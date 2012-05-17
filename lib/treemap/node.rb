@@ -10,8 +10,6 @@
 #
 #
 
-require "md5"
-
 module Treemap
     #
     # A generic tree node class which is used to represent the data to be
@@ -44,11 +42,11 @@ module Treemap
         # Create a new Node. You can initialize the node by passing in
         # a hash with any of the following keys:
         #
-        # * :size - The size that this node represents. For non-leaf nodes the 
+        # * :size - The size that this node represents. For non-leaf nodes the
         #   size must be equal to the sum of the sizes of it's children. If size
         #   is nil then the value will be calculated by recursing the children.
         # * :label - The label for this node. Used when displaying. Defaults to "node"
-        # * :color - The background fill color in hex to render when drawing the 
+        # * :color - The background fill color in hex to render when drawing the
         #   square. If the value is a number a color will be calculated. An example
         #   string color would be: ##FFFFFF (white)
         # * :id - A unique id to assign to this node. Default id will be generated if
@@ -79,7 +77,7 @@ module Treemap
 
         def add_child(node)
             # XXX check to see that a node with the same label doesn't already exist.
-            #     having 2 nodes with the same label at the same depth 
+            #     having 2 nodes with the same label at the same depth
             #     doesn't seem to make sense
             node.parent = self
             @children.push(node)
@@ -116,7 +114,7 @@ module Treemap
 
             sum
         end
-        
+
         # Unscientific formula to calculate the font size depending on the node's area
         def font_size(base_size)
             (base_size * Math.sqrt(self.bounds.width * self.bounds.height) / 125).to_i
@@ -133,9 +131,10 @@ module Treemap
         end
 
     private
+        @@id = 1
         def make_id
-            #XXX prob should change this. Create a better way to generate unique id's
-            @id = MD5.new([self.label, rand(100000000)].join("-")).hexdigest
+            @id = "#{@@id}"
+            @@id += 1
         end
     end
 end
