@@ -11,7 +11,6 @@
 #
 
 require 'cgi'
-require 'RMagick'
 
 require File.dirname(__FILE__) + "/output_base"
 
@@ -58,6 +57,8 @@ class Treemap::SvgOutput < Treemap::OutputBase
     end
 
     def to_png(node, filename="treemap.png")
+    	require 'RMagick'
+
         svg = to_svg(node)
         img = Magick::Image.from_blob(svg) { self.format = "SVG" }
         img[0].write(filename)
